@@ -12,3 +12,36 @@
   opacity: 1;
   transition: 0.5s;
 }
+
+.loading_circle {
+  width: 54px;
+  height: 54px;
+  animation: loading_spin 4s infinite;
+}
+
+.loading_circle circle {
+  stroke: black;
+  stroke-width: 4;
+  fill: transparent;
+  stroke-dasharray: 157;
+  stroke-dashoffset: 0;
+  animation: loading_circle_ani 1.5s infinite;
+}
+
+@keyframes loading_spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loading_circle_ani {
+  0% {
+    stroke-dashoffset: 157;
+  }
+  75% {
+    stroke-dashoffset: -107;
+  }
+  100% {
+    stroke-dashoffset: 157;
+  }
+}

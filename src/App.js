@@ -1,4 +1,4 @@
-import { Suspense, useState } from "react";
+import { Suspense, useState, useEffect } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import { styled } from "styled-components";
@@ -10,10 +10,15 @@ import Talk from "./pages/Talk";
 import Bot from "./pages/Bot";
 import Game from "./pages/Game";
 
+//components
+import Loading from "./components/Loading";
+import Slider from "./components/Slider";
+
 function App() {
   return (
     <div className="App">
-      <Suspense fallback={<div>로딩중</div>}>
+      <Suspense fallback={<Loading />}>
+        <Slider></Slider>
         <Reset></Reset>
         <Navbar></Navbar>
         <Routes>
