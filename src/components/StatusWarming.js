@@ -1,5 +1,6 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { styled } from "styled-components";
+import axios from "axios";
 
 let Container = styled.div`
   background-color: wheat;
@@ -22,17 +23,21 @@ let Gracier = styled.div`
 `;
 
 const StatusWarming = () => {
-  let [count, setCount] = useState(0);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await axios.get(
+        "http://api.openweathermap.org/data/2.5/air_pollution?lat=50&lon=50&appid=48fcd44bf33b160f79fc6827a225a0c7"
+      );
+      return res.data;
+    };
+
+    fetchData().then((res) => setData(res));
+  }, []);
 
   return (
     <Container>
-      <button
-        onClick={() => {
-          setCount(count + 1);
-        }}
-      >
-        +
-      </button>
       <Co2>CONTENT1</Co2>
       <Gracier>CONTENT2</Gracier>
     </Container>

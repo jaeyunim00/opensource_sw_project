@@ -15,18 +15,30 @@ import Loading from "./components/Loading";
 import Slider from "./components/Slider";
 
 function App() {
+  const [slider, setSlider] = useState(true);
+
+  useEffect(() => {
+    const setSliderFalse = () => {
+      setSlider(false);
+    };
+    setTimeout(setSliderFalse, 2700);
+  }, []);
+
   return (
     <div className="App">
       <Suspense fallback={<Loading />}>
-        <Slider></Slider>
         <Reset></Reset>
         <Navbar></Navbar>
-        <Routes>
-          <Route path="/" element={<Main></Main>}></Route>
-          <Route path="/talk" element={<Talk></Talk>}></Route>
-          <Route path="/bot" element={<Bot></Bot>}></Route>
-          <Route path="/game" element={<Game></Game>}></Route>
-        </Routes>
+        {slider ? (
+          <Slider></Slider>
+        ) : (
+          <Routes>
+            <Route path="/" element={<Main></Main>}></Route>
+            <Route path="/talk" element={<Talk></Talk>}></Route>
+            <Route path="/bot" element={<Bot></Bot>}></Route>
+            <Route path="/game" element={<Game></Game>}></Route>
+          </Routes>
+        )}
       </Suspense>
     </div>
   );
